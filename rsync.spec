@@ -1,7 +1,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	2.6.9
-Release:	%mkrel 1
+Release:	%mkrel 2
 Group:		Networking/File transfer
 URL:		http://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
@@ -31,11 +31,11 @@ is included in this package.
 
 Install rsync if you need a powerful mirroring program.
 %if %apply_patches
-This rpm has this patches apply from rsync tree:
+This rpm has these patches applied from rsync tree:
   - acl: allow to mirror acl
   - backup-dir-dels: availlibility to store backup file in another directory
 
-Rebuild the source rpm with `--without patches' if you don't  want this patches
+Rebuild the source rpm with `--without patches' if you don't  want these patches
 %endif
 
 %prep

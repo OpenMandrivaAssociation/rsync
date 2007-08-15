@@ -1,7 +1,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	2.6.9
-Release:	%mkrel 2
+Release:	%mkrel 3
 Group:		Networking/File transfer
 URL:		http://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
@@ -9,6 +9,7 @@ Source1:	rsync.html
 Source2:	rsyncd.conf.html
 Source3:	rsync.xinetd
 Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz.asc
+Patch0:     rsync-acl-delete.patch
 License:	GPL
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
@@ -33,7 +34,6 @@ Install rsync if you need a powerful mirroring program.
 %if %apply_patches
 This rpm has these patches applied from rsync tree:
   - acl: allow to mirror acl
-  - backup-dir-dels: availlibility to store backup file in another directory
 
 Rebuild the source rpm with `--without patches' if you don't  want these patches
 %endif
@@ -44,7 +44,9 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 %if %apply_patches
 #%%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
 %__patch -p1 -b -z .acl < patches/acls.diff
+%patch0 -p0 -b .acldelete
 %endif
+
 
 %build
 %__autoconf

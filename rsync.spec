@@ -1,7 +1,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	2.6.9
-Release:	%mkrel 3
+Release:	%mkrel 4
 Group:		Networking/File transfer
 URL:		http://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
@@ -10,6 +10,7 @@ Source2:	rsyncd.conf.html
 Source3:	rsync.xinetd
 Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz.asc
 Patch0:     rsync-acl-delete.patch
+Patch1:     rsync-2.6.9-suse-CVE-2007-4091.patch
 License:	GPL
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
@@ -41,6 +42,7 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 %prep
 
 %setup -q -n %{name}-%{version}
+%patch1 -p1 -b .CVE-2007-4091
 %if %apply_patches
 #%%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
 %__patch -p1 -b -z .acl < patches/acls.diff

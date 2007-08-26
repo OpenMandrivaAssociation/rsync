@@ -1,7 +1,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	2.6.9
-Release:	%mkrel 4
+Release:	%mkrel 5
 Group:		Networking/File transfer
 URL:		http://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
@@ -60,6 +60,9 @@ rm -f config.h
     --enable-acl-support \
     --with-acl-support \
     --with-nobody-group=nogroup
+
+# kernel or glibc sucks
+perl -pi -e 's:^#define HAVE_LUTIMES 1$:/* #undef HAVE_LUTIMES */:' config.h
 
 %make proto
 %make

@@ -1,14 +1,19 @@
+%define version 2.6.9
+# %%define pre %nil
+%define rel 5
+%define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}
+
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-Version: 	2.6.9
-Release:	%mkrel 5
+Version: 	%version
+Release:	%release
 Group:		Networking/File transfer
 URL:		http://rsync.samba.org/
-Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
+Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?pre}.tar.gz
 Source1:	rsync.html
 Source2:	rsyncd.conf.html
 Source3:	rsync.xinetd
-Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz.asc
+Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?pre}.tar.gz.asc
 Patch0:     rsync-acl-delete.patch
 Patch1:     rsync-2.6.9-suse-CVE-2007-4091.patch
 License:	GPL
@@ -41,7 +46,7 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 
 %prep
 
-%setup -q -n %{name}-%{version}
+%setup -q -n %{name}-%{version}%{?pre}
 %patch1 -p1 -b .CVE-2007-4091
 %if %apply_patches
 #%%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff

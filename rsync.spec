@@ -1,6 +1,6 @@
-%define version 2.6.9
-# %%define pre %nil
-%define rel 5
+%define version 3.0.0
+%define pre pre5
+%define rel 1
 %define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}
 
 Summary:	A program for synchronizing files over a network
@@ -14,8 +14,6 @@ Source1:	rsync.html
 Source2:	rsyncd.conf.html
 Source3:	rsync.xinetd
 Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?pre}.tar.gz.asc
-Patch0:     rsync-acl-delete.patch
-Patch1:     rsync-2.6.9-suse-CVE-2007-4091.patch
 License:	GPL
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
@@ -47,11 +45,9 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 %prep
 
 %setup -q -n %{name}-%{version}%{?pre}
-%patch1 -p1 -b .CVE-2007-4091
 %if %apply_patches
 #%%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
 %__patch -p1 -b -z .acl < patches/acls.diff
-%patch0 -p0 -b .acldelete
 %endif
 
 
@@ -97,5 +93,3 @@ install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 %{_bindir}/rsync
 %{_mandir}/man1/rsync.1*
 %{_mandir}/man5/rsyncd.conf.5*
-
-

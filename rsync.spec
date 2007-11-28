@@ -1,6 +1,6 @@
 %define version 3.0.0
-%define pre pre5
-%define rel 1
+%define pre pre6
+%define rel 0.1
 %define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}
 
 Summary:	A program for synchronizing files over a network
@@ -14,6 +14,8 @@ Source1:	rsync.html
 Source2:	rsyncd.conf.html
 Source3:	rsync.xinetd
 Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?pre}.tar.gz.asc
+Source5:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}%{?pre}.tar.gz
+Source6:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}%{?pre}.tar.gz.asc
 License:	GPL
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
@@ -46,6 +48,7 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 
 %setup -q -n %{name}-%{version}%{?pre}
 %if %apply_patches
+%setup -q -D -b 5 -n %{name}-%{version}%{?pre}
 #%%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
 %__patch -p1 -b -z .acl < patches/acls.diff
 %endif
@@ -66,7 +69,8 @@ rm -f config.h
 perl -pi -e 's:^#define HAVE_LUTIMES 1$:/* #undef HAVE_LUTIMES */:' config.h
 
 %make proto
-%make
+## PRE6 sucks
+%make || %make
 
 %check
 # Test failed on the cluster because there are 2 svn group

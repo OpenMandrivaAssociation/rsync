@@ -20,7 +20,6 @@ License:	GPL
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
 BuildRequires:  acl
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 %define apply_patches 1
 

@@ -1,6 +1,6 @@
 %define version 3.0.0
 %define pre pre8
-%define rel 1
+%define rel 2
 %define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}
 
 Summary:	A program for synchronizing files over a network
@@ -49,7 +49,7 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 %setup -q -n %{name}-%{version}%{?pre}
 %if %apply_patches
 %setup -q -D -b 5 -n %{name}-%{version}%{?pre}
-#%%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
+%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
 %__patch -p1 -b -z .acl < patches/acls.diff
 %endif
 

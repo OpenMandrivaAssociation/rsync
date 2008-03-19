@@ -1,6 +1,6 @@
 %define version 3.0.0
 # %%define pre pre10
-%define rel 3
+%define rel 4
 %define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}
 
 Summary:	A program for synchronizing files over a network
@@ -17,7 +17,6 @@ Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?pre}.tar.gz.asc
 Source5:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}%{?pre}.tar.gz
 Source6:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}%{?pre}.tar.gz.asc
 Patch0:     rsync-loadconfig-null-ptr.patch
-Patch1:     rsync-dont-use-e-on-server.patch
 License:	GPL
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
@@ -50,7 +49,6 @@ Rebuild the source rpm with `--without patches' if you don't  want these patches
 
 %setup -q -n %{name}-%{version}%{?pre}
 %patch0 -p0 -b .nullptr
-%patch1 -p0 -b .server-e
 %if %apply_patches
 %setup -q -D -b 5 -n %{name}-%{version}%{?pre}
 %__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff

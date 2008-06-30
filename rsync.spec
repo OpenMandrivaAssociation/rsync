@@ -1,4 +1,4 @@
-%define version 3.0.2
+%define version 3.0.3
 # %%define pre pre10
 %define rel 1
 %define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}

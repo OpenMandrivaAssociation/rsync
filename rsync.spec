@@ -91,7 +91,7 @@ install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 
 %files
 %defattr(-,root,root)
-%doc tech_report.tex README *html
+%doc tech_report.tex README *html NEWS OLDNEWS
 %config(noreplace) %{_sysconfdir}/xinetd.d/%{name}
 %{_bindir}/rsync
 %{_mandir}/man1/rsync.1*

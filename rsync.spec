@@ -17,7 +17,7 @@ Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?pre}.tar.gz.asc
 Source5:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}%{?pre}.tar.gz
 Source6:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}%{?pre}.tar.gz.asc
 Patch0:     rrsync-bug-3.0.0.patch
-License:	GPL
+License:	GPLv3+
 BuildRequires:	popt-devel
 BuildRequires:  libacl-devel
 BuildRequires:  acl

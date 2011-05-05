@@ -1,6 +1,6 @@
 %define version 3.0.8
 # %%define pre pre10
-%define rel 1
+%define rel 2
 %define release %mkrel %{?pre:0.%{pre}.%{rel}}%{?!pre:%{rel}}
 
 Summary:	A program for synchronizing files over a network

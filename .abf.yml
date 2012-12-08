@@ -1,8 +1,3 @@
 sources:
-  "rsync-3.0.9.tar.gz:"	c64c8341984aea647506eb504496999fd968ddfc
-  "rsync-3.0.9.tar.gz.asc:"	6c3c4b4bda5d1aa0641ec92271548a7b1baf8676
-  "rsyncd.conf.html:"	aa367042f50faa6f7d9be7786a21a3d41750a163
-  "rsync.html:"	d13f6cd4ca8040c8be8a63a1348ac1a927ecc65f
-  "rsync-patches-3.0.9.tar.gz:"	2f2bf85090270ec1d38e189415bf624a1637cadc
-  "rsync-patches-3.0.9.tar.gz.asc:"	640dbff19ed5dd8623f4002b6fcceef29d2d5770
-  "rsync.xinetd:"	a0fee36ff893749a48c15e6b809b54e2a0a16806
+  "rsync-3.0.9.tar.gz": c64c8341984aea647506eb504496999fd968ddfc
+  "rsync-patches-3.0.9.tar.gz": 2f2bf85090270ec1d38e189415bf624a1637cadc

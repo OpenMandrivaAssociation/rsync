@@ -3,7 +3,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	3.0.9
-Release:	1
+Release:	2
 Group:		Networking/File transfer
 License:	GPLv3+
 URL:		http://rsync.samba.org/
@@ -38,7 +38,8 @@ Install rsync if you need a powerful mirroring program.
 This rpm has these patches applied from rsync tree:
   - acl: allow to mirror acl
 
-Rebuild the source rpm with `--without patches' if you don't  want these patches
+Rebuild the source rpm with `--without patches' if you don't  want 
+these patches
 %endif
 
 %prep
@@ -268,7 +269,7 @@ install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 - security fix for CAN-2004-0426 (patch3) (Stew Benedict)
 - misc spec file fixes
 
-* Sun May 30 2004 Per Øyvind Karlsen <peroyvind@linux-mandrake.com> 2.6.2-1mdk
+* Sun May 30 2004 Per Ã˜yvind Karlsen <peroyvind@linux-mandrake.com> 2.6.2-1mdk
 - 2.6.2
 - P2 from fedora:
 	o Backport fix for crasher when passing multiple directories of the same

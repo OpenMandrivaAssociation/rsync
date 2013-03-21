@@ -15,6 +15,7 @@ Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz.asc
 Source5:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}.tar.gz
 Source6:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}.tar.gz.asc
 Patch0:		rrsync-bug-3.0.0.patch
+Patch1:		rsync-aarch64.patch
 BuildRequires:	popt-devel
 BuildRequires:	acl-devel
 BuildRequires:	acl
@@ -45,15 +46,18 @@ these patches
 %prep
 %setup -q
 %patch0 -p0 -b .rrsync
+
 %if %apply_patches
 %setup -q -D -b 5 -n %{name}-%{version}
 %__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
 %__patch -p1 -b -z .acl < patches/acls.diff
 %endif
+%patch1 -p1 -b .aarch64
 
 %build
 %__autoconf
 %__autoheader
+autoreconf -fi
 %serverbuild
 rm -f config.h
 

@@ -54,12 +54,10 @@ these patches
 %endif
 %patch1 -p1 -b .aarch64
 
-%build
-%__autoconf
-%__autoheader
 autoreconf -fi
+
+%build
 %serverbuild
-rm -f config.h
 
 %configure2_5x \
     --enable-acl-support \

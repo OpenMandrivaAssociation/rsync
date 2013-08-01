@@ -1,9 +1,11 @@
 # %%define pre pre10
 
+%bcond_without	uclibc
+
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	3.0.9
-Release:	2
+Release:	3
 Group:		Networking/File transfer
 License:	GPLv3+
 URL:		http://rsync.samba.org/
@@ -43,6 +45,20 @@ Rebuild the source rpm with `--without patches' if you don't  want
 these patches
 %endif
 
+%package -n	uclibc-%{name}
+Summary:	A program for synchronizing files over a network (uClibc build)
+Group:		Networking/File transfer
+
+%description -n	uclibc-%{name}
+Rsync uses a quick and reliable algorithm to very quickly bring
+remote and host files into sync.  Rsync is fast because it just
+sends the differences in the files over the network (instead of
+sending the complete files). Rsync is often used as a very powerful
+mirroring process or just as a more capable replacement for the
+rcp command.  A technical report which describes the rsync algorithm
+is included in this package.
+
+Install rsync if you need a powerful mirroring program.
 %prep
 %setup -q
 %patch0 -p0 -b .rrsync
@@ -59,6 +75,25 @@ autoreconf -fi
 %build
 %serverbuild
 
+export CONFIGURE_TOP="$PWD"
+%if %{with uclibc}
+mkdir -p uclibc
+pushd uclibc
+%uclibc_configure \
+    --enable-acl-support \
+    --with-acl-support \
+    --with-nobody-group=nogroup
+# kernel or glibc sucks
+perl -pi -e 's:^#define HAVE_LUTIMES 1$:/* #undef HAVE_LUTIMES */:' config.h
+
+%make proto
+%make
+popd
+%endif
+
+mkdir -p glibc
+pushd glibc
+#ln -s ../rsync.1 ../rsyncd.conf.5
 %configure2_5x \
     --enable-acl-support \
     --with-acl-support \
@@ -69,19 +104,25 @@ perl -pi -e 's:^#define HAVE_LUTIMES 1$:/* #undef HAVE_LUTIMES */:' config.h
 
 %make proto
 %make
+popd
 
 %check
 # Test failed on the cluster because there are 2 svn group
 [ `hostname | grep mandriva.com` ] && exit 0
-make test
+make -C glibc test
 
 %install
 install -d %{buildroot}{%{_bindir},%{_mandir}/{man1,man5}}
 
-%makeinstall_std
+%if %{with uclibc}
+%makeinstall_std -C uclibc
+%endif
+%makeinstall_std -C glibc
 
 install -m644 %{SOURCE1} %{SOURCE2} .
-install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/rsync
+install -m644 %{SOURCE3} -D %{buildroot}%{_sysconfdir}/xinetd.d/rsync
+install -m644 rsync.1 %{buildroot}%{_mandir}/man1/rsync.1*
+install -m644 rsyncd.conf.5 %{buildroot}%{_mandir}/man5/rsyncd.conf.5*
 
 %files
 %doc tech_report.tex README *html NEWS OLDNEWS
@@ -91,6 +132,10 @@ install -D -m 644 %{SOURCE3} %{buildroot}%{_sysconfdir}/xinetd.d/rsync
 %{_mandir}/man1/rsync.1*
 %{_mandir}/man5/rsyncd.conf.5*
 
+%if %{with uclibc}
+%files -n uclibc-%{name}
+%{uclibc_root}%{_bindir}/rsync
+%endif
 
 %changelog
 * Sun Oct 16 2011 Oden Eriksson <oeriksson@mandriva.com> 3.0.9-1mdv2012.0

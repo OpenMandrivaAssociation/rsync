@@ -21,6 +21,9 @@ Patch1:		rsync-aarch64.patch
 BuildRequires:	popt-devel
 BuildRequires:	acl-devel
 BuildRequires:	acl
+%if %{with uclibc}
+BuildRequires:	uClibc-devel
+%endif
 
 %define apply_patches 1
 

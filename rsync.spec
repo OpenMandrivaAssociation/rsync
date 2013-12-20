@@ -52,6 +52,7 @@ if you don't  want these patches
 %package -n	uclibc-%{name}
 Summary:	A program for synchronizing files over a network (uClibc build)
 Group:		Networking/File transfer
+Requires:	%{name} = %{EVRD}
 
 %description -n	uclibc-%{name}
 Rsync uses a quick and reliable algorithm to very quickly bring

@@ -137,7 +137,3 @@ install -m644 %{SOURCE15} -D %{buildroot}/%{_sysconfdir}/sysconfig/rsyncd
 %files -n uclibc-%{name}
 %{uclibc_root}%{_bindir}/rsync
 %endif
-%config(noreplace) %{_sysconfdir}/rsyncd.conf
-%config(noreplace) %{_sysconfdir}/sysconfig/rsyncd
-%{_unitdir}/rsyncd.socket
-%{_unitdir}/rsyncd.service

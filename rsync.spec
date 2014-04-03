@@ -28,6 +28,7 @@ BuildRequires:	acl-devel
 BuildRequires:	acl
 Buildrequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
+BuildRequires:	yodl
 
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
@@ -101,7 +102,6 @@ popd
 
 mkdir -p glibc
 pushd glibc
-#ln -s ../rsync.1 ../rsyncd.conf.5
 cp -f ../configure.sh .
 %configure2_5x	--enable-acl-support \
 		--with-nobody-group=nogroup \

@@ -14,7 +14,7 @@
  
 +ifndef @WHOLEPROGRAM@
 +rsync$(EXEEXT): rounding.h $(SRCS)
-+	$(CC) $(CFLAGS) -I. -I$(srcdir) $(CPPFLAGS) $(LDFLAGS) -fwhole-program -flto -fuse-linker-plugin -o $@ $^ $(LIBS)
++	$(CC) $(CFLAGS) -I. -I$(srcdir) $(CPPFLAGS) $(LDFLAGS) -fwhole-program -flto -o $@ $^ $(LIBS)
 +else
  rsync$(EXEEXT): $(OBJS)
  	$(CC) $(CFLAGS) $(LDFLAGS) -o $@ $(OBJS) $(LIBS)

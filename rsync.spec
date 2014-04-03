@@ -26,10 +26,10 @@ BuildRequires:	acl-devel
 BuildRequires:	acl
 Buildrequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
+
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
 %endif
-
 
 %bcond_without	patches
 
@@ -68,8 +68,12 @@ is included in this package.
 Install rsync if you need a powerful mirroring program.
 %prep
 %setup -q
+<<<<<<< HEAD
 %patch0 -p0 -b .rrsync~
 %patch1 -p1 -n                                                 msn~
+=======
+%patch0 -p0 -b .rrsync
+>>>>>>> 3db95e4eb9cd450dd5c913b92d7924d38f0c424e
 %if %{with patches}
 %setup -q -D -b 5
 patch -p1 -b -z .dir-del~ < patches/backup-dir-dels.diff

@@ -22,6 +22,7 @@ Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 
 Patch1:		rsync-man.patch
+Patch2:		rsync-3.1.0-fwhole-program.patch
 
 BuildRequires:	acl-devel
 BuildRequires:	acl
@@ -87,21 +88,25 @@ export CONFIGURE_TOP="$PWD"
 %if %{with uclibc}
 mkdir -p uclibc
 pushd uclibc
+cp -f ../configure.sh .
 %uclibc_configure	--enable-acl-support \
-			--with-acl-support \
 			--with-nobody-group=nogroup \
-			--without-included-zlib
+			--without-included-zlib \
+			--enable-wholeprogram
 %make proto
 %make
+
 popd
 %endif
 
 mkdir -p glibc
 pushd glibc
 #ln -s ../rsync.1 ../rsyncd.conf.5
+cp -f ../configure.sh .
 %configure2_5x	--enable-acl-support \
 		--with-nobody-group=nogroup \
-		--without-included-zlib
+		--without-included-zlib \
+		--enable-wholeprogram
 
 %make proto
 %make
@@ -121,7 +126,7 @@ install -m644 %{SOURCE1} %{SOURCE2} .
 install -m644 %{SOURCE12} -D %{buildroot}%{_unitdir}/rsyncd.socket
 install -m644 %{SOURCE13} -D %{buildroot}%{_unitdir}/rsyncd.service
 install -m644 %{SOURCE14} -D %{buildroot}%{_sysconfdir}/rsyncd.conf
-install -m644 %{SOURCE15} -D %{buildroot}/%{_sysconfdir}/sysconfig/rsyncd
+install -m644 %{SOURCE15} -D %{buildroot}%{_sysconfdir}/sysconfig/rsyncd
 install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 
 %files
@@ -134,6 +139,7 @@ install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyncd
 %{_unitdir}/rsyncd.socket
 %{_unitdir}/rsyncd.service
+%{_unitdir}/rsyncd@.service
 
 %if %{with uclibc}
 %files -n uclibc-%{name}

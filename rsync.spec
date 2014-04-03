@@ -3,10 +3,10 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version: 	3.1.0
-Release:	5.1
+Release:	8
 License:	GPLv3+
 Group:		Networking/File transfer
-URL:		http://rsync.samba.org/
+Url:		http://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html
@@ -17,17 +17,19 @@ Source12:	rsyncd.socket
 Source13:	rsyncd.service
 Source14:	rsyncd.conf
 Source15:	rsyncd.sysconfig
+Source16:	rsyncd@.service
+
 Patch0:		rrsync-bug-3.0.0.patch
-BuildRequires:	popt-devel
+Patch1:		rsync-man.patch
+
 BuildRequires:	acl-devel
 BuildRequires:	acl
 Buildrequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(popt)
 %if %{with uclibc}
 BuildRequires:	uClibc-devel
 %endif
 
-%define apply_patches 1
-Buildrequires:	pkgconfig(zlib)
 
 %bcond_without	patches
 
@@ -65,12 +67,13 @@ is included in this package.
 
 Install rsync if you need a powerful mirroring program.
 %prep
-%setup -q -n %{name}-%{version}
-%patch0 -p0 -b .rrsync
+%setup -q
+%patch0 -p0 -b .rrsync~
+%patch1 -p1 -n                                                 msn~
 %if %{with patches}
-%setup -q -D -b 5 -n %{name}-%{version}
-%__patch -p1 -b -z .dir-del < patches/backup-dir-dels.diff
-%__patch -p1 -b -z .acl < patches/acls.diff
+%setup -q -D -b 5
+patch -p1 -b -z .dir-del~ < patches/backup-dir-dels.diff
+patch -p1 -b -z .acl~ < patches/acls.diff
 %endif
 
 autoreconf -fi
@@ -83,13 +86,10 @@ export CONFIGURE_TOP="$PWD"
 %if %{with uclibc}
 mkdir -p uclibc
 pushd uclibc
-%uclibc_configure \
-    --enable-acl-support \
-    --with-acl-support \
-    --with-nobody-group=nogroup
-# kernel or glibc sucks
-perl -pi -e 's:^#define HAVE_LUTIMES 1$:/* #undef HAVE_LUTIMES */:' config.h
-
+%uclibc_configure	--enable-acl-support \
+			--with-acl-support \
+			--with-nobody-group=nogroup \
+			--without-included-zlib
 %make proto
 %make
 popd
@@ -98,17 +98,16 @@ popd
 mkdir -p glibc
 pushd glibc
 #ln -s ../rsync.1 ../rsyncd.conf.5
-%configure2_5x \
-    --enable-acl-support \
-    --with-nobody-group=nogroup \
-    --without-included-zlib
+%configure2_5x	--enable-acl-support \
+		--with-nobody-group=nogroup \
+		--without-included-zlib
 
 %make proto
 %make
 popd
 
 %check
-make -C glibc test
+%make -C glibc test
 
 %install
 %if %{with uclibc}
@@ -122,6 +121,7 @@ install -m644 %{SOURCE12} -D %{buildroot}%{_unitdir}/rsyncd.socket
 install -m644 %{SOURCE13} -D %{buildroot}%{_unitdir}/rsyncd.service
 install -m644 %{SOURCE14} -D %{buildroot}%{_sysconfdir}/rsyncd.conf
 install -m644 %{SOURCE15} -D %{buildroot}/%{_sysconfdir}/sysconfig/rsyncd
+install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 
 %files
 %doc tech_report.tex README *html NEWS OLDNEWS

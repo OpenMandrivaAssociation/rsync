@@ -2,24 +2,25 @@
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-Version: 	3.1.0
-Release:	8
+%define	overs	3.1.0
+Version: 	3.1.1
+%define	prerel	pre1
+Release:	%{?prerel:0.%{prerel}.}1
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
-Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
+Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?prerel}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html
-Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz.asc
-Source5:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}.tar.gz
-Source6:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}.tar.gz.asc
+#Source4:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz.asc
+Source5:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{overs}.tar.gz
+Source6:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{overs}.tar.gz.asc
 Source12:	rsyncd.socket
 Source13:	rsyncd.service
 Source14:	rsyncd.conf
 Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 
-Patch0:		rrsync-bug-3.0.0.patch
 Patch1:		rsync-man.patch
 
 BuildRequires:	acl-devel
@@ -66,18 +67,14 @@ rcp command.  A technical report which describes the rsync algorithm
 is included in this package.
 
 Install rsync if you need a powerful mirroring program.
-%prep
-%setup -q
-<<<<<<< HEAD
-%patch0 -p0 -b .rrsync~
-%patch1 -p1 -n                                                 msn~
-=======
-%patch0 -p0 -b .rrsync
->>>>>>> 3db95e4eb9cd450dd5c913b92d7924d38f0c424e
+
+%prep 
+%setup -q -n %{name}-%{version}%{?prerel} -a5
+%patch1 -p1 -b .man~
+%patch2 -p1 -b .whole_program~
 %if %{with patches}
-%setup -q -D -b 5
-patch -p1 -b -z .dir-del~ < patches/backup-dir-dels.diff
-patch -p1 -b -z .acl~ < patches/acls.diff
+patch -p1 -b -z .dir-del~ -i rsync*/patches/backup-dir-dels.diff
+patch -p1 -b -z .acl~ -i rsync*/patches/acls.diff
 %endif
 
 autoreconf -fi

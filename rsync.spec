@@ -2,9 +2,9 @@
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-%define	overs	3.1.0
+%define	overs	3.1.1
 Version: 	3.1.1
-%define	prerel	pre1
+#% define	prerel	pre1
 Release:	%{?prerel:0.%{prerel}.}1
 License:	GPLv3+
 Group:		Networking/File transfer
@@ -85,6 +85,7 @@ autoreconf -fi
 %serverbuild
 
 export CONFIGURE_TOP="$PWD"
+export CC=gcc
 
 %if %{with uclibc}
 mkdir -p uclibc

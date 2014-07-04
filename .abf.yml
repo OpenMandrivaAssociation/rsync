@@ -1,4 +1,8 @@
-sources:
+removed_sources:
   rsync-patches-3.1.0.tar.gz: ccfd068b10482ff98109d3a15d6834575d8ae856
-  rsync-patches-3.1.0.tar.gz.asc: d1cf493ed8175bf0b0dc7a3e069775efe2976982
+sources:
+  rsync-3.1.1.tar.gz: c84faba04f721d393feccfa0476bfeed9b5b5250
   rsync-3.1.1pre1.tar.gz: 2ca005a180f976c02b4f98779939aa2309524bf4
+  rsync-patches-3.1.0.tar.gz.asc: d1cf493ed8175bf0b0dc7a3e069775efe2976982
+  rsync-patches-3.1.1.tar.gz: 548c5f631d5ff7a2b6c7f08a879c13caef72e046
+  rsync-patches-3.1.1.tar.gz.asc: 18d4f967304e1227457e972add307aceece3eb70

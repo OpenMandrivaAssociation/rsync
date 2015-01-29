@@ -5,7 +5,7 @@ Name:		rsync
 %define	overs	3.1.1
 Version: 	3.1.1
 #% define	prerel	pre1
-Release:	%{?prerel:0.%{prerel}.}1
+Release:	%{?prerel:0.%{prerel}.}2
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
@@ -24,6 +24,7 @@ Source16:	rsyncd@.service
 Patch1:		rsync-man.patch
 Patch2:		rsync-3.1.0-fwhole-program.patch
 Patch3:		rsync-3.1.1-fix-bundled-patches-to-properly-apply.patch
+Patch4:		rsync-3.1.1-fix-conflicting.defs
 
 BuildRequires:	acl-devel
 BuildRequires:	acl
@@ -100,17 +101,18 @@ Install rsync if you need a powerful mirroring program.
 #{patch -p1 -P patches/fileflags.diff -b .fileflags~ -F2}
 # enable --fsync parameter
 #{patch -p1 -P patches/fsync.diff -b .fsync~ -F2}
+# disabled due to breakage of test suite..
 # enable --ignore-case
-%{patch -p1 -P patches/ignore-case.diff -b .ignore_case~}
+#{patch -p1 -P patches/ignore-case.diff -b .ignore_case~}
 # enable --link-by-hash
 #{patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~ -F2}
-%{patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
+#{patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
 # enable --omit-dir-changes
 #{patch -p1 -P patches/omit-dir-changes.diff -b .omit_dir_chgs~ -F2}
 # enable  --slow-down
 %{patch -p1 -P patches/slow-down.diff -b .slowdown~}
 
-
+%patch4 -p1 -b .fix_defs~
 %endif
 
 autoreconf -fi

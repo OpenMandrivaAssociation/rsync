@@ -1,0 +1,15 @@
+--- rsync-3.1.1/patches/detect-renamed.diff.apply_fix	2014-06-22 19:12:09.000000000 +0200
++++ rsync-3.1.1/patches/detect-renamed.diff	2015-01-29 13:37:10.386267476 +0100
+@@ -787,10 +787,10 @@ diff -Nurp a/proto.h b/proto.h
+  int unchanged_attrs(const char *fname, struct file_struct *file, stat_x *sxp);
+  void itemize(const char *fnamecmp, struct file_struct *file, int ndx, int statret,
+  	     stat_x *sxp, int32 iflags, uchar fnamecmp_type,
+-@@ -354,7 +355,7 @@ void set_blocking(int fd);
++@@ -357,7 +358,7 @@ void set_blocking(int fd);
+  int fd_pair(int fd[2]);
+  void print_child_argv(const char *prefix, char **cmd);
+- int set_modtime(const char *fname, time_t modtime, uint32 mod_nsec, mode_t mode);
++ int set_times(const char *fname, time_t modtime, uint32 mod_nsec, time_t atime, mode_t mode);
+ -int make_path(char *fname, int flags);
+ +int make_path(char *fname, mode_t mode, int flags);
+  int full_write(int desc, const char *ptr, size_t len);

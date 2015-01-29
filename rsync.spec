@@ -23,6 +23,7 @@ Source16:	rsyncd@.service
 
 Patch1:		rsync-man.patch
 Patch2:		rsync-3.1.0-fwhole-program.patch
+Patch3:		rsync-3.1.1-fix-bundled-patches-to-properly-apply.patch
 
 BuildRequires:	acl-devel
 BuildRequires:	acl
@@ -74,8 +75,10 @@ Install rsync if you need a powerful mirroring program.
 %setup -q -n %{name}-%{version}%{?prerel} -b5
 %patch1 -p1 -b .man~
 %patch2 -p1 -b .whole_program~
+%patch3 -p1 -b .apply_fix~
+
 %if %{with patches}
-%{patch -F2 -p1 -P patches/backup-dir-dels.diff -b .dir_dels~}
+%{patch -p1 -P patches/backup-dir-dels.diff -b .dir_dels~ -F2}
 %{patch -p1 -P patches/acls.diff -b .acls~}
 
 # enable --copy-devices parameter
@@ -85,25 +88,25 @@ Install rsync if you need a powerful mirroring program.
 # enable --direct-io parameter
 %{patch -p1 -P patches/direct-io.diff -b .directio~}
 # enable --detect-renamed parameter
-%{patch -p1 -P patches/detect-renamed.diff -b .detect_renamed~}
+%{patch -p1 -P patches/detect-renamed.diff -b .detect_renamed~ -F2}
 # enable --date-only parameter
 %{patch -p1 -P patches/date-only.diff -b .date_only~}
 # enable --sumfiles parameter
-%{patch -p1 -P patches/checksum-reading.diff -b .chksum_read~}
-%{patch -p1 -P patches/checksum-updating.diff -b .chksum_update~}
+#{patch -p1 -P patches/checksum-reading.diff -b .chksum_read~}
+#{patch -p1 -P patches/checksum-updating.diff -b .chksum_update~}
 # enable --downdate parameter
-%{patch -p1 -P patches/downdate.diff -b .chksum_update~}
+%{patch -p1 -P patches/downdate.diff -b .downdate~ -F2}
 # enable --fileflags parameter
-%{patch -p1 -P patches/fileflags.diff -b .fileflags~}
+#{patch -p1 -P patches/fileflags.diff -b .fileflags~ -F2}
 # enable --fsync parameter
-%{patch -p1 -P patches/fsync.diff -b .fsync~}
+#{patch -p1 -P patches/fsync.diff -b .fsync~ -F2}
 # enable --ignore-case
 %{patch -p1 -P patches/ignore-case.diff -b .ignore_case~}
 # enable --link-by-hash
-%{patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~}
+#{patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~ -F2}
 %{patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
 # enable --omit-dir-changes
-%{patch -p1 -P patches/omit-dir-changes.diff -b .omit_dir_chgs~}
+#{patch -p1 -P patches/omit-dir-changes.diff -b .omit_dir_chgs~ -F2}
 # enable  --slow-down
 %{patch -p1 -P patches/slow-down.diff -b .slowdown~}
 

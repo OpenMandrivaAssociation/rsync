@@ -95,6 +95,8 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/downdate.diff -b .chksum_update~}
 # enable --fileflags parameter
 %{patch -p1 -P patches/fileflags.diff -b .fileflags~}
+# enable --fsync parameter
+%{patch -p1 -P patches/fsync.diff -b .fsync~}
 %endif
 
 autoreconf -fi

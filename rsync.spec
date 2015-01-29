@@ -80,8 +80,11 @@ Install rsync if you need a powerful mirroring program.
 
 # enable --copy-devices parameter
 %{patch -p1 -P patches/copy-devices.diff -b .copy_devs~}
-# enable --atimes options
+# enable --atimes parameter
 %{patch -p1 -P patches/atimes.diff -b .copy_devs~}
+# enable --direct-io parameter
+%{patch -p1 -P patches/atimes.diff -b .copy_devs~}
+
 
 %endif
 

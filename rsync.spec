@@ -81,11 +81,11 @@ Install rsync if you need a powerful mirroring program.
 # enable --copy-devices parameter
 %{patch -p1 -P patches/copy-devices.diff -b .copy_devs~}
 # enable --atimes parameter
-%{patch -p1 -P patches/atimes.diff -b .copy_devs~}
+%{patch -p1 -P patches/atimes.diff -b .atimes~}
 # enable --direct-io parameter
-%{patch -p1 -P patches/atimes.diff -b .copy_devs~}
+%{patch -p1 -P patches/direct-io.diff -b .directio~}
 # enable --detect-renamed parameter
-%{patch -p1 -P patches/detect-renamed.diff -b .copy_devs~}
+%{patch -p1 -P patches/detect-renamed.diff -b .detect_renamed~}
 
 
 %endif

@@ -75,8 +75,9 @@ Install rsync if you need a powerful mirroring program.
 %patch1 -p1 -b .man~
 %patch2 -p1 -b .whole_program~
 %if %{with patches}
-patch -p1 -b -z .dir-del~ -i patches/backup-dir-dels.diff
-patch -p1 -b -z .acl~ -i patches/acls.diff
+%{patch -F2 -p1 -P patches/backup-dir-dels.diff -b .dir_dels~}
+%{patch -p1 -P patches/acls.diff -b .acls~}
+
 %endif
 
 autoreconf -fi

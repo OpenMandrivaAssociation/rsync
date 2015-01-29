@@ -99,6 +99,9 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/fsync.diff -b .fsync~}
 # enable --ignore-case
 %{patch -p1 -P patches/ignore-case.diff -b .ignore_case~}
+# enable --link-by-hash
+%{patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~}
+
 %endif
 
 autoreconf -fi

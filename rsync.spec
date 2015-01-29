@@ -71,12 +71,12 @@ is included in this package.
 Install rsync if you need a powerful mirroring program.
 
 %prep 
-%setup -q -n %{name}-%{version}%{?prerel} -a5
+%setup -q -n %{name}-%{version}%{?prerel} -b5
 %patch1 -p1 -b .man~
 %patch2 -p1 -b .whole_program~
 %if %{with patches}
-patch -p1 -b -z .dir-del~ -i rsync*/patches/backup-dir-dels.diff
-patch -p1 -b -z .acl~ -i rsync*/patches/acls.diff
+patch -p1 -b -z .dir-del~ -i patches/backup-dir-dels.diff
+patch -p1 -b -z .acl~ -i patches/acls.diff
 %endif
 
 autoreconf -fi

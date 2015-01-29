@@ -93,7 +93,8 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/checksum-updating.diff -b .chksum_update~}
 # enable --downdate parameter
 %{patch -p1 -P patches/downdate.diff -b .chksum_update~}
-
+# enable --fileflags parameter
+%{patch -p1 -P patches/fileflags.diff -b .fileflags~}
 %endif
 
 autoreconf -fi

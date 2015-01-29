@@ -102,6 +102,8 @@ Install rsync if you need a powerful mirroring program.
 # enable --link-by-hash
 %{patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~}
 %{patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
+# enable --omit-dir-changes
+%{patch -p1 -P patches/omit-dir-changes.diff -b .omit_dir_chgs~}
 
 %endif
 

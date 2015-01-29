@@ -84,6 +84,8 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/atimes.diff -b .copy_devs~}
 # enable --direct-io parameter
 %{patch -p1 -P patches/atimes.diff -b .copy_devs~}
+# enable --detect-renamed parameter
+%{patch -p1 -P patches/detect-renamed.diff -b .copy_devs~}
 
 
 %endif

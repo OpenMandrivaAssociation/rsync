@@ -86,6 +86,8 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/direct-io.diff -b .directio~}
 # enable --detect-renamed parameter
 %{patch -p1 -P patches/detect-renamed.diff -b .detect_renamed~}
+# enable --date-only parameter
+%{patch -p1 -P patches/date-only.diff -b .date_only~}
 
 
 %endif

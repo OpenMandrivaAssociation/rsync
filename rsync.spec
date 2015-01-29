@@ -101,6 +101,7 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/ignore-case.diff -b .ignore_case~}
 # enable --link-by-hash
 %{patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~}
+%{patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
 
 %endif
 

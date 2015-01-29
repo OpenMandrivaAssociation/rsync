@@ -104,6 +104,9 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
 # enable --omit-dir-changes
 %{patch -p1 -P patches/omit-dir-changes.diff -b .omit_dir_chgs~}
+# enable  --slow-down
+%{patch -p1 -P patches/slow-down.diff -b .slowdown~}
+
 
 %endif
 

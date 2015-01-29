@@ -97,6 +97,8 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/fileflags.diff -b .fileflags~}
 # enable --fsync parameter
 %{patch -p1 -P patches/fsync.diff -b .fsync~}
+# enable --ignore-case
+%{patch -p1 -P patches/ignore-case.diff -b .ignore_case~}
 %endif
 
 autoreconf -fi

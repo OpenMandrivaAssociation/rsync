@@ -78,6 +78,9 @@ Install rsync if you need a powerful mirroring program.
 %{patch -F2 -p1 -P patches/backup-dir-dels.diff -b .dir_dels~}
 %{patch -p1 -P patches/acls.diff -b .acls~}
 
+#Enable --copy-devices parameter
+%{patch -p1 -P patches/copy-devices.diff -b .copy_devs~}
+
 %endif
 
 autoreconf -fi

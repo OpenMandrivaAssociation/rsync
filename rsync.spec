@@ -90,6 +90,7 @@ Install rsync if you need a powerful mirroring program.
 %{patch -p1 -P patches/date-only.diff -b .date_only~}
 # enable --sumfiles parameter
 %{patch -p1 -P <patches/checksum-reading.diff -b .chksum_read~}
+%{patch -p1 -P <patches/checksum-updating.diff -b .chksum_update~}
 
 
 %endif

@@ -20,7 +20,7 @@ Source13:	rsyncd.service
 Source14:	rsyncd.conf
 Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
-
+Source100:	rsync.rpmlintrc
 Patch1:		rsync-man.patch
 Patch2:		rsync-3.1.0-fwhole-program.patch
 Patch3:		rsync-3.1.1-fix-bundled-patches-to-properly-apply.patch

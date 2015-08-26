@@ -1,11 +1,11 @@
-%bcond_without	uclibc
+%bcond_with	uclibc
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 %define	overs	3.1.1
 Version: 	3.1.1
 #% define	prerel	pre1
-Release:	%{?prerel:0.%{prerel}.}2
+Release:	%{?prerel:0.%{prerel}.}3
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
@@ -56,6 +56,7 @@ Rebuild the source rpm with `bcond_with patches'
 if you don't  want these patches
 %endif
 
+%if %{with uclibc}
 %package -n	uclibc-%{name}
 Summary:	A program for synchronizing files over a network (uClibc build)
 Group:		Networking/File transfer
@@ -71,8 +72,9 @@ rcp command.  A technical report which describes the rsync algorithm
 is included in this package.
 
 Install rsync if you need a powerful mirroring program.
+%endif
 
-%prep 
+%prep
 %setup -q -n %{name}-%{version}%{?prerel} -b5
 %patch1 -p1 -b .man~
 %patch2 -p1 -b .whole_program~
@@ -140,7 +142,7 @@ popd
 mkdir -p glibc
 pushd glibc
 cp -f ../configure.sh .
-%configure2_5x	--enable-acl-support \
+%configure	--enable-acl-support \
 		--with-nobody-group=nogroup \
 		--without-included-zlib \
 		--enable-wholeprogram

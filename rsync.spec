@@ -24,7 +24,7 @@ Source16:	rsyncd@.service
 Patch1:		rsync-man.patch
 Patch2:		rsync-3.1.0-fwhole-program.patch
 Patch3:		rsync-3.1.1-fix-bundled-patches-to-properly-apply.patch
-Patch4:		rsync-3.1.1-fix-conflicting.defs
+#Patch4:		rsync-3.1.1-fix-conflicting.defs
 
 BuildRequires:	acl-devel
 BuildRequires:	acl
@@ -114,7 +114,7 @@ Install rsync if you need a powerful mirroring program.
 # enable  --slow-down
 %{patch -p1 -P patches/slow-down.diff -b .slowdown~}
 
-%patch4 -p1 -b .fix_defs~
+#patch4 -p1 -b .fix_defs~
 %endif
 
 autoreconf -fi

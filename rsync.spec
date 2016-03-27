@@ -19,10 +19,8 @@ Source14:	rsyncd.conf
 Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 Source100:	rsync.rpmlintrc
-Patch1:		rsync-man.patch
-Patch2:		rsync-3.1.0-fwhole-program.patch
-Patch3:		rsync-3.1.1-fix-bundled-patches-to-properly-apply.patch
-#Patch4:		rsync-3.1.1-fix-conflicting.defs
+Patch0:		rsync-man.patch
+Patch1:		detect-renamed-rediff.patch
 
 BuildRequires:	acl-devel
 BuildRequires:	acl
@@ -51,9 +49,7 @@ if you don't  want these patches
 
 %prep
 %setup -q -n %{name}-%{version}%{?prerel} -b3
-%patch1 -p1 -b .man~
-%patch2 -p1 -b .whole_program~
-%patch3 -p1 -b .apply_fix~
+%apply_patches
 
 %if %{with patches}
 %{patch -p1 -P patches/backup-dir-dels.diff -b .dir_dels~ -F2}
@@ -93,16 +89,18 @@ if you don't  want these patches
 %endif
 
 autoreconf -fi
+touch configure.sh
 
 %build
 %serverbuild
-export CC=gcc
+rm -f config.h
 
 %configure \
 	--enable-acl-support \
 	--with-nobody-group=nogroup \
-	--without-included-zlib \
-	--enable-wholeprogram
+	--without-included-popt \
+	--without-included-zlib
+
 
 %make proto
 %make

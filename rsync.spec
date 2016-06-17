@@ -27,6 +27,7 @@ BuildRequires:	acl
 Buildrequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
 BuildRequires:	yodl
+BuildRequires:	diffutils
 
 %description
 Rsync uses a quick and reliable algorithm to very quickly bring

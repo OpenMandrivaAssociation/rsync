@@ -54,6 +54,7 @@ if you don't  want these patches
 %if %{with patches}
 %{patch -p1 -P patches/backup-dir-dels.diff -b .dir_dels~ -F2}
 %{patch -p1 -P patches/acls.diff -b .acls~}
+%{patch -p1 -P patches/xattrs.diff -b .xattrs~}
 
 # enable --copy-devices parameter
 %{patch -p1 -P patches/copy-devices.diff -b .copy_devs~}
@@ -106,7 +107,7 @@ rm -f config.h
 %make
 
 %check
-%make test
+make test
 
 %install
 %makeinstall_std

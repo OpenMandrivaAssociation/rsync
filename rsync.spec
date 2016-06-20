@@ -106,9 +106,8 @@ rm -f config.h
 %make proto
 %make
 
-
 %check
-%make test
+make test
 
 %install
 %makeinstall_std

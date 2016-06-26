@@ -5,7 +5,7 @@ Name:		rsync
 %define	overs	3.1.2
 Version: 	3.1.2
 #% define	prerel	pre1
-Release:	%{?prerel:0.%{prerel}.}2
+Release:	%{?prerel:0.%{prerel}.}3
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
@@ -55,6 +55,7 @@ if you don't  want these patches
 %if %{with patches}
 %{patch -p1 -P patches/backup-dir-dels.diff -b .dir_dels~ -F2}
 %{patch -p1 -P patches/acls.diff -b .acls~}
+%{patch -p1 -P patches/xattrs.diff -b .xattrs~}
 
 # enable --copy-devices parameter
 %{patch -p1 -P patches/copy-devices.diff -b .copy_devs~}

@@ -3,9 +3,9 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 %define	overs	3.1.2
-Version: 	3.1.2
+Version: 	3.1.3
 #% define	prerel	pre1
-Release:	%{?prerel:0.%{prerel}.}3
+Release:	%{?prerel:1.%{prerel}.}3
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/

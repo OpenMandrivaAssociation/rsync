@@ -2,7 +2,7 @@
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-%define	overs	3.1.2
+%define	overs	3.1.3
 Version: 	3.1.3
 #% define	prerel	pre1
 Release:	%{?prerel:1.%{prerel}.}3

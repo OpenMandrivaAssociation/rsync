@@ -5,7 +5,7 @@ Name:		rsync
 %define	overs	3.1.3
 Version: 	3.1.3
 #% define	prerel	pre1
-Release:	%{?prerel:1.%{prerel}.}3
+Release:	%{?prerel:1.%{prerel}.}4
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/

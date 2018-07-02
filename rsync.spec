@@ -20,11 +20,10 @@ Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 Source100:	rsync.rpmlintrc
 Patch0:		rsync-man.patch
-Patch1:		detect-renamed-rediff.patch
 
 BuildRequires:	acl-devel
 BuildRequires:	acl
-Buildrequires:	pkgconfig(zlib)
+BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
 BuildRequires:	yodl
 BuildRequires:	diffutils

@@ -19,7 +19,6 @@ Source14:	rsyncd.conf
 Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 Source100:	rsync.rpmlintrc
-Patch0:		rsync-man.patch
 
 BuildRequires:	acl-devel
 BuildRequires:	acl

@@ -50,39 +50,39 @@ if you don't  want these patches
 %setup -q -n %{name}-%{version}%{?prerel} -b3
 
 %if %{with patches}
-%__patch -p1 -P patches/backup-dir-dels.diff -b .dir_dels~
-%__patch -p1 -P patches/acls.diff -b .acls~
-%__patch -p1 -P patches/xattrs.diff -b .xattrs~
+%__patch -p1 -i patches/backup-dir-dels.diff -b .dir_dels~
+%__patch -p1 -i patches/acls.diff -b .acls~
+%__patch -p1 -i patches/xattrs.diff -b .xattrs~
 
 # enable --copy-devices parameter
-%__patch -p1 -P patches/copy-devices.diff -b .copy_devs~
+%__patch -p1 -i patches/copy-devices.diff -b .copy_devs~
 # enable --atimes parameter
-%__patch -p1 -P patches/atimes.diff -b .atimes~
+%__patch -p1 -i patches/atimes.diff -b .atimes~
 # enable --direct-io parameter
-%__patch -p1 -P patches/direct-io.diff -b .directio~
+%__patch -p1 -i patches/direct-io.diff -b .directio~
 # enable --detect-renamed parameter
-%__patch -p1 -P patches/detect-renamed.diff -b .detect_renamed~
+%__patch -p1 -i patches/detect-renamed.diff -b .detect_renamed~
 # enable --date-only parameter
-%__patch -p1 -P patches/date-only.diff -b .date_only~
+%__patch -p1 -i patches/date-only.diff -b .date_only~
 # enable --sumfiles parameter
-#__patch-p1 -P patches/checksum-reading.diff -b .chksum_read~
-#__patch -p1 -P patches/checksum-updating.diff -b .chksum_update~
+#__patch -p1 -i patches/checksum-reading.diff -b .chksum_read~
+#__patch -p1 -i patches/checksum-updating.diff -b .chksum_update~
 # enable --downdate parameter
-%__patch -p1 -P patches/downdate.diff -b .downdate~
+%__patch -p1 -i patches/downdate.diff -b .downdate~
 # enable --fileflags parameter
-#__patch -p1 -P patches/fileflags.diff -b .fileflags~
+#__patch -p1 -i patches/fileflags.diff -b .fileflags~
 # enable --fsync parameter
-#__patch -p1 -P patches/fsync.diff -b .fsync~
+#__patch -p1 -i patches/fsync.diff -b .fsync~
 # disabled due to breakage of test suite..
 # enable --ignore-case
-#__patch -p1 -P patches/ignore-case.diff -b .ignore_case~
+#__patch -p1 -i patches/ignore-case.diff -b .ignore_case~
 # enable --link-by-hash
-#__patch -p1 -P patches/link-by-hash.diff -b .link_by_hash~
-#__patch -p1 -P patches/netgroup-auth.diff -b .netgroup~}
+#__patch -p1 -i patches/link-by-hash.diff -b .link_by_hash~
+#__patch -p1 -i patches/netgroup-auth.diff -b .netgroup~}
 # enable --omit-dir-changes
-#__patch -p1 -P patches/omit-dir-changes.diff -b .omit_dir_chgs~
+#__patch -p1 -i patches/omit-dir-changes.diff -b .omit_dir_chgs~
 # enable  --slow-down
-%__patch -p1 -P patches/slow-down.diff -b .slowdown~
+%__patch -p1 -i patches/slow-down.diff -b .slowdown~
 
 %endif
 

@@ -13,6 +13,7 @@ Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?prerel}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html
 Source3:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{overs}.tar.gz
+Patch1:		detect-renamed-rediff.patch
 Source12:	rsyncd.socket
 Source13:	rsyncd.service
 Source14:	rsyncd.conf
@@ -48,6 +49,7 @@ if you don't  want these patches
 
 %prep
 %setup -q -n %{name}-%{version}%{?prerel} -b3
+%apply_patches
 
 %if %{with patches}
 %__patch -p1 -i patches/backup-dir-dels.diff
@@ -94,10 +96,10 @@ touch configure.sh
 rm -f config.h
 
 %configure \
-	--enable-acl-support \
-	--with-nobody-group=nogroup \
-	--without-included-popt \
-	--without-included-zlib
+    --enable-acl-support \
+    --with-nobody-group=nogroup \
+    --without-included-popt \
+    --without-included-zlib
 
 
 %make proto

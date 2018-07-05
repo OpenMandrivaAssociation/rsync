@@ -131,6 +131,6 @@ install -m644 %{SOURCE16} -D %{buildroot}%{_systemunitdir}/rsyncd@.service
 %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/rsyncd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyncd
-%{_systemcunitdir}/rsyncd.socket
+%{_systemunitdir}/rsyncd.socket
 %{_systemunitdir}/rsyncd.service
 %{_systemunitdir}/rsyncd@.service

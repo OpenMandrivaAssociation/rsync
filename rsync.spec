@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
 BuildRequires:	yodl
 BuildRequires:	diffutils
+BuildRequires:	systemd
 
 %description
 Rsync uses a quick and reliable algorithm to very quickly bring
@@ -116,11 +117,11 @@ make test
 
 install -m644 %{SOURCE1} %{SOURCE2} .
 
-install -m644 %{SOURCE12} -D %{buildroot}%{_unitdir}/rsyncd.socket
-install -m644 %{SOURCE13} -D %{buildroot}%{_unitdir}/rsyncd.service
+install -m644 %{SOURCE12} -D %{buildroot}%{_systemunitdir}/rsyncd.socket
+install -m644 %{SOURCE13} -D %{buildroot}%{_systemunitdir}/rsyncd.service
 install -m644 %{SOURCE14} -D %{buildroot}%{_sysconfdir}/rsyncd.conf
 install -m644 %{SOURCE15} -D %{buildroot}%{_sysconfdir}/sysconfig/rsyncd
-install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
+install -m644 %{SOURCE16} -D %{buildroot}%{_systemunitdir}/rsyncd@.service
 
 %files
 %doc tech_report.tex README *html NEWS OLDNEWS
@@ -130,6 +131,6 @@ install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/rsyncd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyncd
-%{_unitdir}/rsyncd.socket
-%{_unitdir}/rsyncd.service
-%{_unitdir}/rsyncd@.service
+%{_systemcunitdir}/rsyncd.socket
+%{_systemunitdir}/rsyncd.service
+%{_systemunitdir}/rsyncd@.service

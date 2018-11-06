@@ -5,7 +5,7 @@ Name:		rsync
 %define	overs	3.1.3
 Version: 	3.1.3
 #% define	prerel	pre1
-Release:	%{?prerel:1.%{prerel}.}4
+Release:	%{?prerel:1.%{prerel}.}5
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
@@ -27,7 +27,7 @@ BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
 BuildRequires:	yodl
 BuildRequires:	diffutils
-BuildRequires:	systemd
+BuildRequires:	systemd-macros
 
 %description
 Rsync uses a quick and reliable algorithm to very quickly bring
@@ -103,23 +103,23 @@ rm -f config.h
     --without-included-zlib
 
 
-%make proto
-%make
+%make_build proto
+%make_build
 
 # (tpg) for some strange reasones checks fails on ix86 and x86_64 and armx
 #check
 #make test
 
 %install
-%makeinstall_std
+%make_install
 
 install -m644 %{SOURCE1} %{SOURCE2} .
 
-install -m644 %{SOURCE12} -D %{buildroot}%{_systemunitdir}/rsyncd.socket
-install -m644 %{SOURCE13} -D %{buildroot}%{_systemunitdir}/rsyncd.service
+install -m644 %{SOURCE12} -D %{buildroot}%{_unitdir}/rsyncd.socket
+install -m644 %{SOURCE13} -D %{buildroot}%{_unitdir}/rsyncd.service
 install -m644 %{SOURCE14} -D %{buildroot}%{_sysconfdir}/rsyncd.conf
 install -m644 %{SOURCE15} -D %{buildroot}%{_sysconfdir}/sysconfig/rsyncd
-install -m644 %{SOURCE16} -D %{buildroot}%{_systemunitdir}/rsyncd@.service
+install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 
 %files
 %doc tech_report.tex README *html NEWS OLDNEWS
@@ -129,6 +129,6 @@ install -m644 %{SOURCE16} -D %{buildroot}%{_systemunitdir}/rsyncd@.service
 %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/rsyncd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyncd
-%{_systemunitdir}/rsyncd.socket
-%{_systemunitdir}/rsyncd.service
-%{_systemunitdir}/rsyncd@.service
+%{_unitdir}/rsyncd.socket
+%{_unitdir}/rsyncd.service
+%{_nitdir}/rsyncd@.service

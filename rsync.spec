@@ -50,7 +50,7 @@ if you don't  want these patches
 
 %prep
 %setup -q -n %{name}-%{version}%{?prerel} -b3
-%apply_patches
+%autopatch -p1
 
 %if %{with patches}
 %__patch -p1 -i patches/backup-dir-dels.diff

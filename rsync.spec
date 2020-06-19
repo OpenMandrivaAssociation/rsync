@@ -1,19 +1,18 @@
 %bcond_without	patches
+%define	prerel	pre3
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-%define	overs	3.1.3
-Version: 	3.1.3
-#% define	prerel	pre1
-Release:	%{?prerel:1.%{prerel}.}5
+%define	overs	3.2.0
+Version: 	3.2.0
+Release:	%{?prerel:0.%{prerel}.}1
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
-Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}%{?prerel}.tar.gz
+Source0:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-%{version}%{?prerel}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html
-Source3:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{overs}.tar.gz
-Patch1:		detect-renamed-rediff.patch
+Source3:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-patches-%{overs}%{?prerel}.tar.gz
 Source12:	rsyncd.socket
 Source13:	rsyncd.service
 Source14:	rsyncd.conf
@@ -25,6 +24,7 @@ BuildRequires:	acl-devel
 BuildRequires:	acl
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
+BuildRequires:	pkgconfig(openssl)
 BuildRequires:	yodl
 BuildRequires:	diffutils
 BuildRequires:	systemd-macros
@@ -59,8 +59,6 @@ if you don't  want these patches
 
 # enable --copy-devices parameter
 %__patch -p1 -i patches/copy-devices.diff
-# enable --atimes parameter
-%__patch -p1 -i patches/atimes.diff
 # enable --direct-io parameter
 %__patch -p1 -i patches/direct-io.diff
 # enable --detect-renamed parameter
@@ -122,10 +120,12 @@ install -m644 %{SOURCE15} -D %{buildroot}%{_sysconfdir}/sysconfig/rsyncd
 install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 
 %files
-%doc tech_report.tex README *html NEWS OLDNEWS
+%doc tech_report.tex *html
 %doc support/rrsync
 %{_bindir}/rsync
+%{_bindir}/rsync-ssl
 %{_mandir}/man1/rsync.1*
+%{_mandir}/man1/rsync-ssl.1*
 %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/rsyncd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyncd

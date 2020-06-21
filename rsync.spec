@@ -5,14 +5,14 @@ Summary:	A program for synchronizing files over a network
 Name:		rsync
 %define	overs	3.2.0
 Version: 	3.2.0
-Release:	%{?prerel:0.%{prerel}.}1
+Release:	1
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
-Source0:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-%{version}%{?prerel}.tar.gz
+Source0:	http://rsync.samba.org/ftp/rsync/%{name}-%{version}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html
-Source3:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-patches-%{overs}%{?prerel}.tar.gz
+Source3:	http://rsync.samba.org/ftp/rsync/%{name}-patches-%{version}.tar.gz
 Source12:	rsyncd.socket
 Source13:	rsyncd.service
 Source14:	rsyncd.conf
@@ -50,7 +50,7 @@ if you don't  want these patches
 
 
 %prep
-%setup -q -n %{name}-%{version}%{?prerel} -b3
+%setup -q -n %{name}-%{version} -b3
 %autopatch -p1
 
 %if %{with patches}

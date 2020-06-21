@@ -1,3 +1,3 @@
 sources:
-  rsync-3.2.0pre3.tar.gz: ab325345cfa3498163c1c46d4b2706ecba732faf
-  rsync-patches-3.2.0pre3.tar.gz: bf6573a21866c29d9c3c51886a55daf4ab446829
+  rsync-3.2.0.tar.gz: 678bcb27d5456a833a0bd567092040995d22ec6e
+  rsync-patches-3.2.0.tar.gz: 9fa0873e54f6bed0b67c69753d48570c4072864a

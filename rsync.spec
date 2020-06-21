@@ -27,6 +27,7 @@ BuildRequires:	pkgconfig(popt)
 BuildRequires:	pkgconfig(openssl)
 BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:  pkgconfig(libzstd)
+BuildRequires:  pkgconfig(liblz4)
 BuildRequires:	yodl
 BuildRequires:	diffutils
 BuildRequires:	systemd-macros

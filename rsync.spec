@@ -1,5 +1,5 @@
 %bcond_without	patches
-%define	prerel	pre3
+%define	prerel	%{nil}
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
@@ -25,6 +25,7 @@ BuildRequires:	acl
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
 BuildRequires:	pkgconfig(openssl)
+BuildRequires:  pkgconfig(libxxhash)
 BuildRequires:	yodl
 BuildRequires:	diffutils
 BuildRequires:	systemd-macros

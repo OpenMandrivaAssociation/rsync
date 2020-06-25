@@ -1,9 +1,8 @@
 %bcond_without	patches
-%define	prerel	pre1
+#% define	prerel	
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-%define	overs	3.2.1
 Version: 	3.2.1
 Release:	%{?prerel:0.%{prerel}.}1
 License:	GPLv3+
@@ -12,7 +11,7 @@ Url:		http://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-%{version}%{?prerel}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html
-Source3:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-patches-%{overs}%{?prerel}.tar.gz
+Source3:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-patches-%{version}%{?prerel}.tar.gz
 Source12:	rsyncd.socket
 Source13:	rsyncd.service
 Source14:	rsyncd.conf

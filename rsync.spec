@@ -3,7 +3,7 @@
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-Version:	3.2.2
+Version:	3.2.3
 Release:	1
 License:	GPLv3+
 Group:		Networking/File transfer
@@ -55,9 +55,14 @@ if you don't  want these patches
 %autopatch -p1
 
 %if %{with patches}
+%__patch -p1 -i patches/backup-deleted.diff
 %__patch -p1 -i patches/backup-dir-dels.diff
-%__patch -p1 -i patches/acls.diff
-%__patch -p1 -i patches/xattrs.diff
+%__patch -p1 -i patches/catch_crash_signals.diff
+%__patch -p1 -i patches/checksum-reading.diff
+%__patch -p1 -i patches/checksum-updating.diff
+#__patch -p1 -i patches/checksum-xattr.diff
+#__patch -p1 -i patches/clone-dest.diff
+%__patch -p1 -i patches/congestion.diff
 
 # enable --copy-devices parameter
 %__patch -p1 -i patches/copy-devices.diff
@@ -78,14 +83,14 @@ if you don't  want these patches
 #__patch -p1 -i patches/fsync.diff
 # disabled due to breakage of test suite..
 # enable --ignore-case
-#__patch -p1 -i patches/ignore-case.diff
+%__patch -p1 -i patches/ignore-case.diff
 # enable --link-by-hash
 #__patch -p1 -i patches/link-by-hash.diff
 #__patch -p1 -i patches/netgroup-auth.diff
 # enable --omit-dir-changes
 #__patch -p1 -i patches/omit-dir-changes.diff
 # enable  --slow-down
-%__patch -p1 -i patches/slow-down.diff
+#__patch -p1 -i patches/slow-down.diff
 
 %endif
 

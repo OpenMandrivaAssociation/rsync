@@ -19,7 +19,7 @@ Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 Source100:	rsync.rpmlintrc
 
-BuildRequires:	acl-devel
+BuildRequires:	pkgconfig(libacl)
 BuildRequires:	acl
 BuildRequires:	pkgconfig(zlib)
 BuildRequires:	pkgconfig(popt)
@@ -29,7 +29,7 @@ BuildRequires:	pkgconfig(libzstd)
 BuildRequires:	pkgconfig(liblz4)
 BuildRequires:	yodl
 BuildRequires:	diffutils
-BuildRequires:	systemd-macros
+BuildRequires:	systemd-rpm-macros
 
 %description
 Rsync uses a quick and reliable algorithm to very quickly bring
@@ -107,7 +107,6 @@ rm -f config.h
     --without-included-popt \
     --without-included-zlib
 
-
 %make_build proto
 %make_build
 
@@ -131,9 +130,9 @@ install -m644 %{SOURCE16} -D %{buildroot}%{_unitdir}/rsyncd@.service
 %doc support/rrsync
 %{_bindir}/rsync
 %{_bindir}/rsync-ssl
-%{_mandir}/man1/rsync.1*
-%{_mandir}/man1/rsync-ssl.1*
-%{_mandir}/man5/rsyncd.conf.5*
+%doc %{_mandir}/man1/rsync.1*
+%doc %{_mandir}/man1/rsync-ssl.1*
+%doc %{_mandir}/man5/rsyncd.conf.5*
 %config(noreplace) %{_sysconfdir}/rsyncd.conf
 %config(noreplace) %{_sysconfdir}/sysconfig/rsyncd
 %{_unitdir}/rsyncd.socket

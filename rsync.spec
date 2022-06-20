@@ -3,7 +3,7 @@
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-Version:	3.2.3
+Version:	3.2.4
 Release:	1
 License:	GPLv3+
 Group:		Networking/File transfer
@@ -56,7 +56,7 @@ if you don't  want these patches
 
 %if %{with patches}
 %__patch -p1 -i patches/backup-deleted.diff
-%__patch -p1 -i patches/backup-dir-dels.diff
+#__patch -p1 -i patches/backup-dir-dels.diff
 %__patch -p1 -i patches/catch_crash_signals.diff
 %__patch -p1 -i patches/checksum-reading.diff
 %__patch -p1 -i patches/checksum-updating.diff
@@ -64,34 +64,35 @@ if you don't  want these patches
 #__patch -p1 -i patches/clone-dest.diff
 %__patch -p1 -i patches/congestion.diff
 
-# enable --copy-devices parameter
-%__patch -p1 -i patches/copy-devices.diff
 # enable --direct-io parameter
 %__patch -p1 -i patches/direct-io.diff
 # enable --detect-renamed parameter
 %__patch -p1 -i patches/detect-renamed.diff
-# enable --date-only parameter
-%__patch -p1 -i patches/date-only.diff
-# enable --sumfiles parameter
-#__patch -p1 -i patches/checksum-reading.diff
-#__patch -p1 -i patches/checksum-updating.diff
+#__patch -p1 -i patches/detect-renamed-lax.diff
 # enable --downdate parameter
 %__patch -p1 -i patches/downdate.diff
 # enable --fileflags parameter
 #__patch -p1 -i patches/fileflags.diff
-# enable --fsync parameter
-#__patch -p1 -i patches/fsync.diff
 # disabled due to breakage of test suite..
 # enable --ignore-case
 %__patch -p1 -i patches/ignore-case.diff
 # enable --link-by-hash
 #__patch -p1 -i patches/link-by-hash.diff
-#__patch -p1 -i patches/netgroup-auth.diff
 # enable --omit-dir-changes
 #__patch -p1 -i patches/omit-dir-changes.diff
 # enable  --slow-down
 #__patch -p1 -i patches/slow-down.diff
-
+%__patch -p1 -i patches/slp.diff
+#__patch -p1 -i patches/soften-links.diff
+#__patch -p1 -i patches/source-backup.diff
+%__patch -p1 -i patches/source-filter_dest-filter.diff
+%__patch -p1 -i patches/filter-attribute-mods.diff
+%__patch -p1 -i patches/sparse-block.diff
+%__patch -p1 -i patches/transliterate.diff
+#__patch -p1 -i patches/kerberos.diff
+#__patch -p1 -i patches/xxh3-safety-check.diff
+#__patch -p1 -i patches/date-only.diff
+#__patch -p1 -i patches/db.diff
 %endif
 
 autoreconf -fi

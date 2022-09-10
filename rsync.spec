@@ -3,7 +3,7 @@
 
 Summary:	A program for synchronizing files over a network
 Name:		rsync
-Version:	3.2.4
+Version:	3.2.6
 Release:	1
 License:	GPLv3+
 Group:		Networking/File transfer

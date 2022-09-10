@@ -1,3 +1,3 @@
 sources:
-  rsync-3.2.4.tar.gz: 79103c0f12aba63d54044825eb9a402550ebc897
-  rsync-patches-3.2.4.tar.gz: 28cc54eff7f18d7c938e3eb6140f2f93419f5e47
+  rsync-3.2.6.tar.gz: 9d9ff8042a19a88a4526249085e10f31a5d021b6
+  rsync-patches-3.2.6.tar.gz: ea91ab857f2981acb6a4f27b083a2fb1b69d324c

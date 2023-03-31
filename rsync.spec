@@ -4,7 +4,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version:	3.2.7
-Release:	1
+Release:	2
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/

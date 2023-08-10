@@ -4,7 +4,7 @@
 Summary:	A program for synchronizing files over a network
 Name:		rsync
 Version:	3.2.7
-Release:	2
+Release:	3
 License:	GPLv3+
 Group:		Networking/File transfer
 Url:		http://rsync.samba.org/
@@ -90,10 +90,15 @@ touch configure.sh
 rm -f config.h
 
 %configure \
+    --enable-openssl \
+    --enable-xxhash \
+    --enable-zstd \
+    --enable-lz4 \
+    --enable-ipv6 \
     --enable-acl-support \
     --with-nobody-group=nogroup \
-    --without-included-popt \
-    --without-included-zlib
+    --with-included-popt=no \
+    --with-included-zlib=no
 
 %make_build proto
 %make_build

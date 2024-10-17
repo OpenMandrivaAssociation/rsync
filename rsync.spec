@@ -7,7 +7,7 @@ Version:	3.3.0
 Release:	1
 License:	GPLv3+
 Group:		Networking/File transfer
-Url:		http://rsync.samba.org/
+Url:		https://rsync.samba.org/
 Source0:	http://rsync.samba.org/ftp/rsync/%{?prerel:src-previews/}%{name}-%{version}%{?prerel}.tar.gz
 Source1:	http://rsync.samba.org/ftp/rsync/rsync.html
 Source2:	http://rsync.samba.org/ftp/rsync/rsyncd.conf.html

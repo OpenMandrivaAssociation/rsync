@@ -1,3 +1,3 @@
 sources:
-  rsync-3.4.0.tar.gz: 8e053bd4fb527b9032ee8f1691890540cfbbfa7c
-  rsync-patches-3.4.0.tar.gz: 816aa0585252b3d7603755c5d3d5b0c20e7267e2
+  rsync-3.4.1.tar.gz: 19a6173f6242275478fc35804e87616ff82b5cff
+  rsync-patches-3.4.1.tar.gz: 614574960fafd5f3b8b59094ee7d2cf3e1eae542

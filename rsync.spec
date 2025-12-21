@@ -19,6 +19,11 @@ Source15:	rsyncd.sysconfig
 Source16:	rsyncd@.service
 Source100:	rsync.rpmlintrc
 
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	pkgconfig(libacl)
 BuildRequires:	acl
 BuildRequires:	pkgconfig(zlib)
